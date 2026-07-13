@@ -1,4 +1,31 @@
+// Globale data veranderlikes
+let STORES = [];
+let ISSUES = [];
+let DEFAULT_CONTACTS = {};
 let state = { step: 1, store: null, issue: null };
+
+// Inisiële funksie om data te gaan haal
+async function initApp() {
+  const url = "https://script.google.com/macros/s/AKfycbz5t-HE23VKNLPgNJ4J2sxyap_P7APtrtFNWoW0ISVOqfi6HuottFNSltfyZa86FcI-/exec"; 
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    STORES = data.stores;
+    ISSUES = data.issues;
+    
+    // Omskep die kontakte na die formaat wat jou app verwag
+    DEFAULT_CONTACTS = data.default_contacts.reduce((acc, curr) => {
+      acc[curr.id] = JSON.parse(curr.data);
+      return acc;
+    }, {});
+    
+    render(); 
+  } catch (err) {
+    console.error("Kon nie data laai nie:", err);
+    document.getElementById("app").innerHTML = "<p style='color:red;'>Kon nie data laai nie. Kontak IT.</p>";
+  }
+}
 
 function render(){
   const app = document.getElementById("app");
@@ -47,12 +74,15 @@ function render(){
     const issue = ISSUES.find(i => i.id === state.issue);
     crumbs.innerHTML = `<span>${storeName}</span><span> › </span><span>${issue.label}</span><span> › </span><span class="active">3. Basic Troubleshooting</span>`;
     
+    // Pars die checks as dit in die sheet as 'n string gestoor is
+    const checkList = typeof issue.checks === 'string' ? JSON.parse(issue.checks) : issue.checks;
+    
     app.innerHTML = `
       <button class="btn-back" onclick="goBack()">← Back to Faults</button>
       <p class="step-label">Basic Troubleshooting</p>
       <div class="trouble-box">
         <ol>
-          ${issue.checks.map(c => `<li>${c}</li>`).join("")}
+          ${checkList.map(c => `<li>${c}</li>`).join("")}
         </ol>
       </div>
       <button class="btn-action" onclick="gotoStep(4)">Still Broken? Log a Call</button>
@@ -64,8 +94,7 @@ function render(){
     const issue = ISSUES.find(i => i.id === state.issue);
     crumbs.innerHTML = `<span>${storeName}</span><span> › </span><span>${issue.label}</span><span> › </span><span class="active">4. Support Contact</span>`;
     
-    const storeContacts = CONTACTS[state.store] || {};
-    const supportData = storeContacts[state.issue] || DEFAULT_CONTACTS[state.issue];
+    const supportData = DEFAULT_CONTACTS[state.issue];
 
     let supportHtml = "";
     if(!supportData){
@@ -94,23 +123,9 @@ function render(){
   }
 }
 
-function setStore(id){ 
-  state.store = id; 
-  state.step = 2; 
-  render(); 
-}
-
-function setIssue(id){ 
-  state.issue = id; 
-  state.step = 3; 
-  render(); 
-}
-
-function gotoStep(num){ 
-  state.step = num; 
-  render(); 
-}
-
+function setStore(id){ state.store = id; state.step = 2; render(); }
+function setIssue(id){ state.issue = id; state.step = 3; render(); }
+function gotoStep(num){ state.step = num; render(); }
 function goBack(){
   if(state.step === 4) state.step = 3;
   else if(state.step === 3) state.step = 2;
@@ -118,4 +133,5 @@ function goBack(){
   render();
 }
 
-render();
+// Begin die program
+initApp();
