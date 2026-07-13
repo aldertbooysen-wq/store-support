@@ -6,7 +6,9 @@ let state = { step: 1, store: null, issue: null };
 
 // Inisiële funksie om data te gaan haal
 async function initApp() {
-  const url = "https://script.google.com/macros/s/AKfycbz5t-HE23VKNLPgNJ4J2sxyap_P7APtrtFNWoW0ISVOqfi6HuottFNSltfyZa86FcI-/exec"; 
+  // Hierdie URL gebruik 'n proxy om CORS-blokkasie te omseil
+  const url = "https://corsproxy.io/?https://script.google.com/macros/s/AKfycbz5t-HE23VKNLPgNJ4J2sxyap_P7APtrtFNWoW0ISVOqfi6HuottFNSltfyZa86FcI-/exec"; 
+  
   try {
     const response = await fetch(url);
     const data = await response.json();
