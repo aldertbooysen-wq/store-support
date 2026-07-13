@@ -53,7 +53,8 @@ function render(){
     `;
   }
   else if(state.step === 2){
-    const storeName = STORES.find(s => s.id === state.store).name;
+    const store = STORES.find(s => s.id === state.store);
+    const storeName = store ? store.name : "Unknown";
     crumbs.innerHTML = `<span>${storeName}</span><span> › </span><span class="active">2. Select Fault</span>`;
     app.innerHTML = `
       <button class="btn-back" onclick="goBack()">← Back to Stores</button>
@@ -70,11 +71,11 @@ function render(){
     `;
   }
   else if(state.step === 3){
-    const storeName = STORES.find(s => s.id === state.store).name;
+    const store = STORES.find(s => s.id === state.store);
+    const storeName = store ? store.name : "Unknown";
     const issue = ISSUES.find(i => i.id === state.issue);
     crumbs.innerHTML = `<span>${storeName}</span><span> › </span><span>${issue.label}</span><span> › </span><span class="active">3. Basic Troubleshooting</span>`;
     
-    // Pars die checks as dit in die sheet as 'n string gestoor is
     const checkList = typeof issue.checks === 'string' ? JSON.parse(issue.checks) : issue.checks;
     
     app.innerHTML = `
@@ -90,7 +91,8 @@ function render(){
     `;
   }
   else if(state.step === 4){
-    const storeName = STORES.find(s => s.id === state.store).name;
+    const store = STORES.find(s => s.id === state.store);
+    const storeName = store ? store.name : "Unknown";
     const issue = ISSUES.find(i => i.id === state.issue);
     crumbs.innerHTML = `<span>${storeName}</span><span> › </span><span>${issue.label}</span><span> › </span><span class="active">4. Support Contact</span>`;
     
@@ -98,9 +100,7 @@ function render(){
 
     let supportHtml = "";
     if(!supportData){
-      supportHtml = `<div class="empty">No contact details loaded for this store yet.<br>Please contact your Area Manager.</div>`;
-    } else if(supportData.type === "info"){
-      supportHtml = `<div class="info-box"><strong>Important:</strong><br><br>${supportData.message}</div>`;
+      supportHtml = `<div class="empty">No contact details loaded for this store yet.</div>`;
     } else {
       supportHtml = supportData.contacts.map(c => `
         <div class="contact-card">
