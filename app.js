@@ -1,117 +1,121 @@
-"use strict";
+let state = { step: 1, store: null, issue: null };
 
-// ======================================================
-// GLOBAL DATA
-// ======================================================
-
-let STORES = [];
-let ISSUES = [];
-let DEFAULT_CONTACTS = {};
-
-let state = {
-  step: 1,
-  store: null,
-  issue: null
-};
-
-// Google Apps Script deployment URL
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbz5t-HE23VKNLPgNJ4J2sxyap_P7APtrtFNWoW0ISVOqfi6HuottFNSltfyZa86FcI-/exec";
-
-// Use corsproxy.io to retrieve the Google Apps Script data
-const DATA_URL =
-  "https://corsproxy.io/?url=" +
-  encodeURIComponent(GOOGLE_SCRIPT_URL);
-
-
-// ======================================================
-// INITIALISE APPLICATION
-// ======================================================
-
-async function initApp() {
+function render(){
   const app = document.getElementById("app");
   const crumbs = document.getElementById("crumbs");
 
-  if (!app || !crumbs) {
-    console.error(
-      'The required elements with IDs "app" and "crumbs" were not found.'
-    );
-    return;
-  }
-
-  crumbs.innerHTML = "";
-
-  app.innerHTML = `
-    <div class="empty">
-      Loading store information...
+  const reportHtml = `
+    <div class="contact-card" style="margin-top: 25px; border-left-color: var(--red);">
+      <div class="contact-name">Report incorrect info</div>
+      <div class="contact-role">Aldert</div>
+      <div class="btn-group">
+        <a class="call-btn" style="background:var(--red); color:#fff;" href="tel:0835644582">📞 Call 0835644582</a>
+        <a class="email-btn" href="mailto:aldert@tradeonsa.co.za">✉️ Email Support</a>
+      </div>
     </div>
   `;
 
-  try {
-    console.log("Requesting data from:", DATA_URL);
+  if(state.step === 1){
+    crumbs.innerHTML = `<span class="active">1. Choose Store</span>`;
+    app.innerHTML = `
+      <p class="step-label">Select your store</p>
+      <div class="store-list">
+        ${STORES.map(s => `<button class="tile" onclick="setStore('${s.id}')">${s.name}</button>`).join("")}
+      </div>
+      ${reportHtml}
+    `;
+  }
+  else if(state.step === 2){
+    const storeName = STORES.find(s => s.id === state.store).name;
+    crumbs.innerHTML = `<span>${storeName}</span><span> › </span><span class="active">2. Select Fault</span>`;
+    app.innerHTML = `
+      <button class="btn-back" onclick="goBack()">← Back to Stores</button>
+      <p class="step-label">What is broken?</p>
+      <div class="grid">
+        ${ISSUES.map(i => `
+          <button class="tile" onclick="setIssue('${i.id}')">
+            <span class="ic">${i.icon}</span>
+            <span>${i.label}</span>
+          </button>
+        `).join("")}
+      </div>
+      ${reportHtml}
+    `;
+  }
+  else if(state.step === 3){
+    const storeName = STORES.find(s => s.id === state.store).name;
+    const issue = ISSUES.find(i => i.id === state.issue);
+    crumbs.innerHTML = `<span>${storeName}</span><span> › </span><span>${issue.label}</span><span> › </span><span class="active">3. Basic Troubleshooting</span>`;
+    
+    app.innerHTML = `
+      <button class="btn-back" onclick="goBack()">← Back to Faults</button>
+      <p class="step-label">Basic Troubleshooting</p>
+      <div class="trouble-box">
+        <ol>
+          ${issue.checks.map(c => `<li>${c}</li>`).join("")}
+        </ol>
+      </div>
+      <button class="btn-action" onclick="gotoStep(4)">Still Broken? Log a Call</button>
+      ${reportHtml}
+    `;
+  }
+  else if(state.step === 4){
+    const storeName = STORES.find(s => s.id === state.store).name;
+    const issue = ISSUES.find(i => i.id === state.issue);
+    crumbs.innerHTML = `<span>${storeName}</span><span> › </span><span>${issue.label}</span><span> › </span><span class="active">4. Support Contact</span>`;
+    
+    const storeContacts = CONTACTS[state.store] || {};
+    const supportData = storeContacts[state.issue] || DEFAULT_CONTACTS[state.issue];
 
-    const response = await fetch(DATA_URL, {
-      method: "GET",
-      cache: "no-store",
-      headers: {
-        Accept: "application/json"
-      }
-    });
-
-    console.log("Response status:", response.status);
-
-    if (!response.ok) {
-      throw new Error(
-        `Data request failed: ${response.status} ${response.statusText}`
-      );
+    let supportHtml = "";
+    if(!supportData){
+      supportHtml = `<div class="empty">No contact details loaded for this store yet.<br>Please contact your Area Manager.</div>`;
+    } else if(supportData.type === "info"){
+      supportHtml = `<div class="info-box"><strong>Important:</strong><br><br>${supportData.message}</div>`;
+    } else {
+      supportHtml = supportData.contacts.map(c => `
+        <div class="contact-card">
+          <div class="contact-name">${c.name}</div>
+          <div class="contact-role">${c.role}</div>
+          <div class="btn-group">
+            ${c.phone ? `<a class="call-btn" href="tel:${c.phone}">📞 Call ${c.phone}</a>` : ''}
+            ${c.email ? `<a class="email-btn" href="mailto:${c.email}">✉️ Email Support</a>` : ''}
+          </div>
+        </div>
+      `).join("");
     }
 
-    // Read the response as text first so that a useful error
-    // can be displayed if HTML is returned instead of JSON.
-    const responseText = await response.text();
+    app.innerHTML = `
+      <button class="btn-back" onclick="goBack()">← Back to Troubleshooting</button>
+      <p class="step-label">${storeName} Contacts</p>
+      ${supportHtml}
+      ${reportHtml}
+    `;
+  }
+}
 
-    if (!responseText.trim()) {
-      throw new Error("The data server returned an empty response.");
-    }
+function setStore(id){ 
+  state.store = id; 
+  state.step = 2; 
+  render(); 
+}
 
-    let data;
+function setIssue(id){ 
+  state.issue = id; 
+  state.step = 3; 
+  render(); 
+}
 
-    try {
-      data = JSON.parse(responseText);
-    } catch (parseError) {
-      console.error("Invalid server response:", responseText);
+function gotoStep(num){ 
+  state.step = num; 
+  render(); 
+}
 
-      throw new Error(
-        "The server did not return valid JSON. Response: " +
-          responseText.substring(0, 200)
-      );
-    }
+function goBack(){
+  if(state.step === 4) state.step = 3;
+  else if(state.step === 3) state.step = 2;
+  else if(state.step === 2) state.step = 1;
+  render();
+}
 
-    if (data.error) {
-      throw new Error(
-        data.message || "Google Apps Script returned an error."
-      );
-    }
-
-    if (!Array.isArray(data.stores)) {
-      throw new Error("The Stores information is missing or invalid.");
-    }
-
-    if (!Array.isArray(data.issues)) {
-      throw new Error("The Issues information is missing or invalid.");
-    }
-
-    if (!Array.isArray(data.default_contacts)) {
-      throw new Error(
-        "The DefaultContacts information is missing or invalid."
-      );
-    }
-
-    STORES = data.stores.filter(function (store) {
-      return store && store.id && store.name;
-    });
-
-    ISSUES = data.issues.filter(function (issue) {
-      return issue && issue.id && issue.label;
-    });
-
+render();
