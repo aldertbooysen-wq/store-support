@@ -15,24 +15,26 @@ function render(){
     </div>
   `;
 
-  // STAP 1: Kies Winkel
+  // Step 1: Select Store
   if(state.step === 1){
-    crumbs.innerHTML = `<span class="active">1. Kies Winkel</span>`;
+    crumbs.innerHTML = `<span class="active">1. Select Store</span>`;
     app.innerHTML = `
-      <p class="step-label">Kies jou winkel</p>
+      <p class="step-label">Select your store</p>
       <div class="store-list">
-        ${STORES.map(s => `<button class="tile" onclick="setStore('${s.id}')">${s.name}</button>`).join("")}
+        ${STORES && STORES.length > 0 
+          ? STORES.map(s => `<button class="tile" onclick="setStore('${s.id}')">${s.name}</button>`).join("") 
+          : '<p>No stores found.</p>'}
       </div>
       ${reportHtml}
     `;
   }
-  // STAP 2: Kies Hoofkategorie (bv. GAAP)
+  // Step 2: Select Category
   else if(state.step === 2){
-    const storeName = STORES.find(s => s.id === state.store).name;
-    crumbs.innerHTML = `<span>${storeName}</span><span> › </span><span class="active">2. Kategorie</span>`;
+    const store = STORES.find(s => s.id === state.store);
+    crumbs.innerHTML = `<span>${store ? store.name : ''}</span><span> › </span><span class="active">2. Select Category</span>`;
     app.innerHTML = `
-      <button class="btn-back" onclick="goBack()">← Terug</button>
-      <p class="step-label">Wat is die kategorie?</p>
+      <button class="btn-back" onclick="goBack()">← Back</button>
+      <p class="step-label">What category?</p>
       <div class="grid">
         ${ISSUES.map(i => `
           <button class="tile" onclick="setIssue('${i.id}')">
@@ -43,12 +45,12 @@ function render(){
       </div>
     `;
   }
-  // STAP 3: Kies Subkategorie (bv. 1. MOD PC)
+  // Step 3: Select Sub-Issue
   else if(state.step === 3){
     const issue = ISSUES.find(i => i.id === state.issue);
-    crumbs.innerHTML = `<span>...</span><span> › </span><span class="active">3. Kies Fout</span>`;
+    crumbs.innerHTML = `<span>...</span><span> › </span><span class="active">3. Select Issue</span>`;
     app.innerHTML = `
-      <button class="btn-back" onclick="goBack()">← Terug</button>
+      <button class="btn-back" onclick="goBack()">← Back</button>
       <p class="step-label">${issue.label}</p>
       <div class="grid">
         ${issue.checks.map((c, index) => `
@@ -59,23 +61,20 @@ function render(){
       </div>
     `;
   }
-  // STAP 4: Foutsporing (Fault Finding Lys)
+  // Step 4: Troubleshooting
   else if(state.step === 4){
     const issue = ISSUES.find(i => i.id === state.issue);
     const sub = issue.checks[state.subIssue];
-    crumbs.innerHTML = `<span class="active">4. Foutsporing</span>`;
-    
+    crumbs.innerHTML = `<span class="active">4. Troubleshooting</span>`;
     app.innerHTML = `
-      <button class="btn-back" onclick="goBack()">← Terug</button>
+      <button class="btn-back" onclick="goBack()">← Back</button>
       <div class="trouble-box">${sub}</div>
-      <button class="btn-action" onclick="gotoStep(5)">Log 'n Call</button>
+      <button class="btn-action" onclick="gotoStep(5)">Still Broken? Log a Call</button>
     `;
   }
-  // STAP 5: Kontakbesonderhede
+  // Step 5: Contacts
   else if(state.step === 5){
-    const storeContacts = CONTACTS[state.store] || {};
-    const supportData = storeContacts[state.issue] || DEFAULT_CONTACTS[state.issue];
-
+    const supportData = DEFAULT_CONTACTS[state.issue];
     let supportHtml = supportData ? supportData.contacts.map(c => `
       <div class="contact-card">
         <div class="contact-name">${c.name}</div>
@@ -85,19 +84,21 @@ function render(){
           ${c.email ? `<a class="email-btn" href="mailto:${c.email}">✉️ Email Support</a>` : ''}
         </div>
       </div>
-    `).join("") : `<div class="empty">Geen kontakdata beskikbaar.</div>`;
+    `).join("") : `<div class="empty">No contact details found.</div>`;
 
     app.innerHTML = `
-      <button class="btn-back" onclick="goBack()">← Terug</button>
+      <button class="btn-back" onclick="goBack()">← Back</button>
       ${supportHtml}
     `;
   }
 }
 
+// Navigation Functions
 function setStore(id){ state.store = id; state.step = 2; render(); }
 function setIssue(id){ state.issue = id; state.step = 3; render(); }
 function setSubIssue(index){ state.subIssue = index; state.step = 4; render(); }
 function gotoStep(num){ state.step = num; render(); }
 function goBack(){ state.step--; render(); }
 
+// Initialize
 render();
