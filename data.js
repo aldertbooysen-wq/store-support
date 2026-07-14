@@ -185,5 +185,24 @@ const MENU_STRUCTURE = [
   }
 ];
 
+const DEFAULT_CONTACTS = {
+  "tills": { type: "call", contacts: [{ name: "Gaap Helpdesk", role: "Log on Retail Office 'New Case'. No calls.", phone: "" }, { name: "Abduragmaan (Gaap)", role: "POS / Cabling WhatsApp Escalation", phone: "0738600229" }] },
+  "internet": { type: "call", contacts: [{ name: "Exmile Support", role: "Level 1 (WhatsApp / Email)", phone: "0636839085", email: "support@exmile.co.za" }, { name: "Adelaide", role: "Level 2 (Centre Manager)", phone: "0636839085", email: "adelaideg@exmile.co.za" }, { name: "Ilario", role: "Level 3 (Account Manager)", phone: "0768392508", email: "ilarioh@exmile.co.za" }, { name: "Bianca", role: "Level 4 (COO)", phone: "0645164913", email: "biancat@exmile.co.za" }] },
+  "kiosks": { type: "call", contacts: [{ name: "ODM Service Desk", role: "1st Line Support", phone: "0861106041", email: "clientsupport@onedigitalmedia.com" }] },
+  "cash": { type: "call", contacts: [{ name: "Deposita Call Centre", role: "ABM Maintenance & Support", phone: "0861000965", email: "deposita.ccc@za.g4s.com" }, { name: "Nathan Smith", role: "Priority L1 (CIT Manager)", phone: "0835606214" }, { name: "Nicodemeus Carelse", role: "Priority L2 (Branch Security)", phone: "0825621106" }, { name: "Andriella Da Fonseca", role: "Priority L3 (Regional Sales)", phone: "0665873354" }, { name: "Steven Collinson", role: "Priority L4 (Regional Director)", phone: "0715539624" }, { name: "Jaylee Bourne", role: "Box Room Queries (CPC Manager)", phone: "0834429630" }] },
+  "g4s": { type: "call", contacts: [{ name: "G4S Helpdesk", role: "CIT / Collection Support", phone: "0861126789" }, { name: "Nathan Smith", role: "CIT Manager", phone: "0835606214" }] },
+  "headsets_gaap": { type: "call", contacts: [{ name: "Gaap Workshop", role: "Log call, courier item.", phone: "" }, { name: "Andre (Gaap)", role: "Speaker Box / Timers Escalation", phone: "0715766421" }] },
+  "headsets_micros": { type: "call", contacts: [{ name: "Micros Workshop", role: "Log call, courier item.", phone: "" }] },
+  "music": { type: "call", contacts: [{ name: "Gresham Helpdesk", role: "Main Support", phone: "0116564348", email: "support@mcm.co.za" }, { name: "Darius (360 Degrees)", role: "Music / DMX Decoder Escalation", phone: "0722123933" }] },
+  "cards": { type: "call", contacts: [{ name: "Transaction Junction", role: "Level 1 Helpdesk", phone: "0769914982" }, { name: "Leslie", role: "Level 2 (Operations Manager)", phone: "0742635504" }, { name: "Ysuf", role: "Level 3 (Account Manager)", phone: "0825704820" }] },
+  "cctv": { type: "call", contacts: [{ name: "Darius (360 Degrees)", role: "CCTV Support", phone: "0722123933" }] },
+  "printer": { type: "call", contacts: [{ name: "Raydian Support", role: "Level 1", phone: "", email: "support@raydian.co.za" }, { name: "Adiel", role: "Level 2 (Technical)", phone: "0833245309" }, { name: "Busi", role: "Level 3 (Account Manager)", phone: "0723422211" }] },
+  "telephone": { type: "call", contacts: [{ name: "Aldert", role: "Switchtel Support", phone: "0835644582" }] },
+  "office": { type: "call", contacts: [{ name: "Aldert", role: "Microsoft 365 / Emails", phone: "0835644582" }] },
+  "tablets": { type: "call", contacts: [{ name: "Aldert", role: "Hardware Issues (RuggedSA)", phone: "0835644582" }, { name: "Belinda", role: "Software / Training Issues", phone: "0824962256" }] },
+  "locks": { type: "call", contacts: [{ name: "Darius (360 Degrees)", role: "Toilet Locks", phone: "0722123933" }] }
+};
+
+const CONTACTS = {};
 const DEFAULT_CONTACTS = { /* Bly dieselfde as voorheen */ };
 const CONTACTS = {};
