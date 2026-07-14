@@ -126,6 +126,33 @@ const MENU_STRUCTURE = [
       { id: "l_hw", label: "1. Keypad", icon: "🔢", finalChecks: ["<strong>Keypad</strong><br>✅ Check buttons.", "<strong>Battery</strong><br>✅ Low battery warning?"] },
       { id: "l_op", label: "2. Operation", icon: "🚪", finalChecks: ["<strong>PIN</strong><br>✅ Enter slowly.", "<strong>Obstruction</strong><br>✅ Door alignment."] }
     ]
+  },
+{
+    id: "dents",
+    label: "Dents - Electrical",
+    icon: "⚡",
+    subCategories: [
+      { 
+        id: "dents_pots", 
+        label: "1. Pots / Fryers", 
+        icon: "🥘", 
+        finalChecks: [
+          "<strong>Power</strong><br>✅ Check if the pot/fryer is plugged in and switched on.",
+          "<strong>Temperature</strong><br>✅ Verify the thermostat is set to the correct temperature.",
+          "<strong>Safety Cut-off</strong><br>✅ Check if the safety reset button has been triggered."
+        ] 
+      },
+      { 
+        id: "dents_ovens", 
+        label: "2. Ovens", 
+        icon: "🔥", 
+        finalChecks: [
+          "<strong>Power Supply</strong><br>✅ Check the isolator switch is on.",
+          "<strong>Elements</strong><br>✅ Ensure the oven is heating up evenly.",
+          "<strong>Door Seal</strong><br>✅ Check if the door closes tightly to maintain heat."
+        ] 
+      }
+    ]
   }
 ];
 
@@ -143,7 +170,13 @@ const DEFAULT_CONTACTS = {
   "telephone": { type: "call", contacts: [{ name: "Aldert", role: "Switchtel Support", phone: "0835644582" }] },
   "office": { type: "call", contacts: [{ name: "Aldert", role: "Microsoft 365 / Emails", phone: "0835644582" }] },
   "tablets": { type: "call", contacts: [{ name: "Aldert", role: "Hardware Issues (RuggedSA)", phone: "0835644582" }, { name: "Belinda", role: "Software / Training Issues", phone: "0824962256" }] },
-  "locks": { type: "call", contacts: [{ name: "Darius (360 Degrees)", role: "Toilet Locks", phone: "0722123933" }] }
+  "locks": { type: "call", contacts: [{ name: "Darius (360 Degrees)", role: "Toilet Locks", phone: "0722123933" }] },
+  "dents": { 
+    type: "call", 
+    contacts: [
+      { name: "Dents Support", role: "Electrical / Oven Repairs", phone: "0123456789" }
+    ] 
+  }
 };
 
 const CONTACTS = {};
