@@ -56,21 +56,423 @@ const STORES = [
 ];
 
 const ISSUES = [
-  { id: "tills", label: "GAAP - Tills / SCREENS / MOD PC", icon: "💻", checks: ["<strong>Is the PC Switched On?</strong><br>✅ Check that:<ul><li>The power cable is plugged in securely.</li><li>The wall plug is switched on.</li><li>Any UPS or surge protector is switched on.</li><li>The PC power button has been pressed.</li><li>If there are no lights or sounds at all, check another wall socket if possible.</li></ul>", "<strong>Is the Monitor On?</strong><br>✅ Check that:<ul><li>The monitor power light is on.</li><li>The monitor is not showing 'No Signal.'</li><li>Cables between the PC and monitor are connected firmly.</li><li>Try turning the monitor off and on again.</li></ul>", "<strong>Restart the PC</strong><br>Many issues are resolved by a restart.<br>✅ Click Restart from Windows if possible.<br>If the PC is frozen:<ul><li>Hold the power button for 10 seconds until it switches off.</li><li>Wait 30 seconds.</li><li>Switch it back on.</li></ul>", "<strong>Check All Cables</strong><br>✅ Ensure:<ul><li>Power cables are connected.</li><li>Network cable is plugged in.</li><li>Keyboard and mouse are connected.</li><li>Look for any loose or disconnected cables.</li></ul>", "<strong>Remove External Devices</strong><br>Disconnect any:<ul><li>USB drives</li><li>External hard drives</li><li>Unused USB devices</li></ul>Then restart the PC.", "<strong>Is There an Error Message?</strong><br>If an error message appears:<br>✅ Take a photo of the screen or write down the exact message.<br>This helps IT resolve the issue faster.", "<strong>Can You Access the Internet?</strong><br>If the problem is internet-related:<br>✅ Check:<ul><li>Network cable is plugged in.</li><li>Other PCs in the store can access the internet.</li><li>Restart the PC.</li></ul>", "<strong>If the POS is Not Working</strong><br>✅ Check:<ul><li>POS application is open.</li><li>Receipt printer is powered on.</li><li>Scanner cables are connected.</li><li>Cash drawer and printer cables are secure.</li><li>Restart the POS PC if necessary.</li></ul>"] },
-  { id: "internet", label: "Exmile - Internet", icon: "🌐", checks: ["<strong>Determine the Scope of the Problem</strong><br>✅ Check:<ul><li>Is only one PC affected?</li><li>Are all PCs affected?</li><li>Are card machines affected?</li><li>Is the store Wi-Fi working?</li></ul>This information helps identify whether the issue is with a specific PC or the entire store connection.", "<strong>Check Network Cables</strong><br>✅ Ensure:<ul><li>The network cable is securely plugged into the PC.</li><li>The cable is securely plugged into the wall outlet, switch, or router.</li><li>No cables appear damaged, pinched, or disconnected.</li><li>Look for link lights (usually green or orange) where the cable plugs in.</li></ul>", "<strong>Check for Power Outages or Load Shedding</strong><br>✅ Confirm:<ul><li>There has not been a recent power outage.</li><li>All internet equipment has powered up correctly after power restoration.</li><li>UPS units are switched on and functioning.</li></ul>", "<strong>Test Another Device</strong><br>✅ Check whether:<ul><li>Another PC can access the internet.</li><li>A cellphone connected to the store Wi-Fi can browse the internet.</li></ul>This helps determine whether the issue affects one device or the entire store.", "<strong>Check Wi-Fi Issues</strong><br>If Wi-Fi is not working:<br>✅ Verify:<ul><li>Wi-Fi is enabled on the device.</li><li>The device is connected to the correct Wi-Fi network.</li><li>Airplane mode is turned off.</li><li>Try disconnecting and reconnecting to the Wi-Fi network.</li></ul>", "<strong>Test a Website</strong><br>✅ Open a web browser and try:<ul><li>www.google.com</li><li>www.microsoft.com</li></ul>If neither website opens, note any error messages displayed.", "<strong>Restart the Affected Device</strong><br>✅ Restart the affected PC, tablet, or device and test again.<br>Many temporary network issues are resolved after a restart."] },
-  { id: "kiosks", label: "ODM - Kiosks / Menu Screens", icon: "📺", checks: ["<strong>Is the Kiosk Powered On?</strong><br>✅ Check that:<ul><li>The kiosk screen is on.</li><li>There are power lights visible.</li><li>The power cable is connected securely.</li><li>The wall plug is switched on.</li></ul>If the screen is completely blank, check the power supply before logging a call.", "<strong>Restart the Kiosk</strong><br>Many kiosk issues are resolved by a simple restart.<br>✅ If possible:<ul><li>Close the kiosk application.</li><li>Restart the kiosk.</li></ul>If the kiosk is frozen:<ul><li>Hold the power button for 10 seconds.</li><li>Wait 30 seconds.</li><li>Switch it back on.</li></ul>Allow the kiosk several minutes to load completely.", "<strong>Check the Internet Connection</strong><br>✅ Verify:<ul><li>Other kiosks are working.</li><li>POS terminals have internet access.</li><li>Store Wi-Fi or internet is functioning normally.</li></ul>Kiosks require an active internet connection to operate correctly.", "<strong>Check for Error Messages</strong><br>✅ If an error message appears:<ul><li>Take a photo of the screen.</li><li>Record the exact wording of the error.</li></ul>This information helps IT identify the issue quickly.", "<strong>Is the Touch Screen Responding?</strong><br>✅ Test:<ul><li>Touch several areas of the screen.</li><li>Check whether any buttons respond.</li></ul>If the screen is visible but touch functionality is not working:<ul><li>Restart the kiosk.</li><li>Ensure there is no physical damage to the screen.</li></ul>", "<strong>Is the Kiosk Application Open?</strong><br>✅ Check whether:<ul><li>The kiosk application is running.</li><li>The application is displaying the ordering screen.</li></ul>If Windows or the desktop is visible instead of the kiosk menu:<ul><li>Take a photo and log a call.</li></ul>", "<strong>Check the Payment Device</strong><br>If customers cannot pay:<br>✅ Check that:<ul><li>The card terminal is powered on.</li><li>All cables are securely connected.</li><li>The card machine displays its normal home screen.</li></ul>If the payment device is showing an error, take a photo.", "<strong>Check All Cables</strong><br>✅ Ensure:<ul><li>Power cables are connected.</li><li>Network cables are connected.</li><li>No cables have been unplugged during cleaning or maintenance.</li></ul>", "<strong>Determine the Scope of the Issue</strong><br>✅ Check:<ul><li>Is only one kiosk affected?</li><li>Are all kiosks affected?</li><li>Are POS terminals working normally?</li></ul>This information assists IT in identifying the root cause."] },
-  { id: "cash", label: "Deposita - ABM", icon: "💵", checks: ["<strong>Is the Deposita Unit Powered On?</strong><br>✅ Check that:<ul><li>The screen is on.</li><li>Power lights are visible.</li><li>The power cable is plugged in securely.</li><li>The wall plug is switched on.</li><li>The UPS (if fitted) is switched on.</li></ul>If there are no lights or display, check the power supply before logging a call.", "<strong>Restart the Deposita Unit</strong><br>✅ If the screen is frozen or unresponsive:<ul><li>Follow the approved restart procedure if available.</li><li>Wait 30 seconds before switching the unit back on.</li><li>Allow the unit a few minutes to fully start up.</li></ul>", "<strong>Check the Internet Connection</strong><br>✅ Verify:<ul><li>Store internet is working.</li><li>Other connected devices can access the internet.</li><li>Network equipment (router, switch, fibre device) is powered on.</li></ul>Deposita requires a network connection to communicate with the bank and Deposita systems.", "<strong>Check for Error Messages</strong><br>✅ If an error is displayed:<ul><li>Take a clear photo of the screen.</li><li>Record the exact error message.</li></ul>Do not clear or bypass messages before taking a photo.", "<strong>Check for Notes or Coin Jams</strong><br>✅ Check whether:<ul><li>Notes are stuck in the note acceptor.</li><li>A jam warning is displayed.</li><li>The deposit slot is obstructed.</li></ul>Do not force notes into the machine.<br>If a jam is visible and can be safely cleared according to store procedures, do so carefully.", "<strong>Check if Deposits Can Be Processed</strong><br>✅ Test:<ul><li>Can a note be inserted?</li><li>Does the machine accept or reject all notes?</li><li>Is the problem affecting all deposits or only one transaction?</li></ul>Make a note of what happens.", "<strong>Determine the Scope of the Issue</strong><br>✅ Check:<ul><li>Is the Deposita completely offline?</li><li>Is it accepting deposits but not transmitting?</li><li>Is the issue affecting cash deposits, reconciliations, or reporting?</li></ul>This information helps support identify the problem faster."] },
-  { id: "g4s", label: "G4S - CIT", icon: "💵", checks: ["<strong>1. Confirm the Issue</strong><br>✅ Identify the type of problem:<ul><li>Change order not delivered.</li><li>Incorrect change delivered.</li><li>Cash collection missed.</li><li>Deposita collection missed.</li><li>Deposita door left open after collection.</li><li>Security bag not collected.</li><li>Collection arrived late.</li><li>Collection did not arrive.</li><li>Deposit not reflecting.</li><li>Other CIT-related issue.</li></ul>", "<strong>2. Check Collection or Delivery Schedule</strong><br>✅ Verify:<ul><li>The collection or delivery was scheduled for today.</li><li>The expected collection or delivery time has passed.</li><li>No notification was received regarding a delay.</li></ul>", "<strong>3. Check the Deposita Unit</strong><br>✅ If the issue involves the Deposita machine:<ul><li>Confirm the machine is operational.</li><li>Check whether the deposit was accepted.</li><li>Check whether any error messages are displayed.</li><li>Confirm whether the door is properly closed and locked.</li><li>Take photos if the door appears open or unsecured.</li></ul>", "<strong>4. Verify Change Orders</strong><br>✅ Confirm:<ul><li>The order was submitted correctly.</li><li>The correct delivery date was requested.</li><li>The order reference number is available (if applicable).</li><li>Check whether the delivery has simply been delayed.</li></ul>", "<strong>5. Verify Cash Collections</strong><br>✅ Confirm:<ul><li>Cash bags were prepared and ready for collection.</li><li>Collection documentation was completed.</li><li>The collection time has passed.</li><li>No collection vehicle arrived.</li><li>Take note of the time the collection was expected.</li></ul>", "<strong>6. Check for Security Concerns</strong><br>✅ Immediately report if:<ul><li>A Deposita door has been left open.</li><li>Cash bags have not been secured.</li><li>Seals appear broken or tampered with.</li><li>Any security risk exists.</li><li>Take photos where safe and appropriate.</li></ul>", "<strong>7. Record Relevant Details</strong><br>✅ Record:<ul><li>Date of the incident.</li><li>Approximate time.</li><li>G4S vehicle details (if applicable).</li><li>Driver name (if known).</li><li>Collection reference number (if available).</li><li>Change order reference number (if available).</li></ul>", "<strong>8. Take Photos</strong><br>✅ Photograph:<ul><li>Open Deposita doors.</li><li>Error messages.</li><li>Incorrect deliveries.</li><li>Damaged cash bags.</li><li>Any other relevant evidence.</li></ul>"] },
-  { id: "headsets_gaap", label: "Gaap - DT, Headsets / HME Timer", icon: "🎧", checks: ["<strong>Confirm the Problem</strong><br>✅ Check:<ul><li>Is only one headset affected?</li><li>Are all headsets affected?</li><li>Can customers be heard?</li><li>Can customers hear the team member?</li><li>Is the issue intermittent or permanent?</li></ul>This will help identify whether the problem is with a headset or the entire drive-thru communication system.", "<strong>Check the Headset Battery</strong><br>✅ Verify:<ul><li>The battery is fitted correctly.</li><li>The battery is charged.</li><li>The battery contacts are clean.</li></ul>If available:<ul><li>Replace with a fully charged spare battery.</li><li>Test the headset again.</li></ul>", "<strong>Switch the Headset Off and On</strong><br>✅ Perform a reboot:<ul><li>Turn the headset off.</li><li>Wait 10 seconds.</li><li>Turn it back on.</li></ul>Allow the headset to reconnect to the system.", "<strong>Check the Volume Settings</strong><br>✅ Verify:<ul><li>Headset volume is turned up.</li><li>Microphone volume is not muted.</li><li>No mute indicators are active.</li></ul>", "<strong>Check the Microphone Position</strong><br>✅ Ensure:<ul><li>The microphone boom is positioned correctly.</li><li>The microphone is close to the mouth.</li><li>The microphone is not damaged or obstructed.</li></ul>", "<strong>Test with Another Headset</strong><br>✅ If another headset is available:<ul><li>Log into or connect a different headset.</li><li>Test communication.</li></ul>If the second headset works, the issue is likely with the original headset or battery.", "<strong>Check the Base Station</strong><br>✅ Verify:<ul><li>The drive-thru base station is powered on.</li><li>All indicator lights appear normal.</li><li>Cables are connected securely.</li><li>No power alarms or faults are visible.</li></ul>", "<strong>Check the Drive-Thru System</strong><br>✅ Determine:<ul><li>Can staff hear customers?</li><li>Can customers hear staff?</li><li>Is lane detection working?</li><li>Is the order point operating normally?</li></ul>If all headsets have the same problem, the issue may be with the drive-thru base station rather than the headset.", "<strong>Inspect for Physical Damage</strong><br>✅ Check for:<ul><li>Cracked headset housing.</li><li>Damaged microphone boom.</li><li>Broken battery clips.</li><li>Loose or damaged ear pads.</li></ul>Take photos if damage is found."] },
-  { id: "headsets_micros", label: "Micros - DT, Headsets / Timer", icon: "🎧", checks: ["<strong>Confirm the Problem</strong><br>✅ Check:<ul><li>Is only one headset affected?</li><li>Are all headsets affected?</li><li>Can customers be heard?</li><li>Can customers hear the team member?</li><li>Is the issue intermittent or permanent?</li></ul>This will help identify whether the problem is with a headset or the entire drive-thru communication system.", "<strong>Check the Headset Battery</strong><br>✅ Verify:<ul><li>The battery is fitted correctly.</li><li>The battery is charged.</li><li>The battery contacts are clean.</li></ul>If available:<ul><li>Replace with a fully charged spare battery.</li><li>Test the headset again.</li></ul>", "<strong>Switch the Headset Off and On</strong><br>✅ Perform a reboot:<ul><li>Turn the headset off.</li><li>Wait 10 seconds.</li><li>Turn it back on.</li></ul>Allow the headset to reconnect to the system.", "<strong>Check the Volume Settings</strong><br>✅ Verify:<ul><li>Headset volume is turned up.</li><li>Microphone volume is not muted.</li><li>No mute indicators are active.</li></ul>", "<strong>Check the Microphone Position</strong><br>✅ Ensure:<ul><li>The microphone boom is positioned correctly.</li><li>The microphone is close to the mouth.</li><li>The microphone is not damaged or obstructed.</li></ul>", "<strong>Test with Another Headset</strong><br>✅ If another headset is available:<ul><li>Log into or connect a different headset.</li><li>Test communication.</li></ul>If the second headset works, the issue is likely with the original headset or battery.", "<strong>Check the Base Station</strong><br>✅ Verify:<ul><li>The drive-thru base station is powered on.</li><li>All indicator lights appear normal.</li><li>Cables are connected securely.</li><li>No power alarms or faults are visible.</li></ul>", "<strong>Check the Drive-Thru System</strong><br>✅ Determine:<ul><li>Can staff hear customers?</li><li>Can customers hear staff?</li><li>Is lane detection working?</li><li>Is the order point operating normally?</li></ul>If all headsets have the same problem, the issue may be with the drive-thru base station rather than the headset.", "<strong>Inspect for Physical Damage</strong><br>✅ Check for:<ul><li>Cracked headset housing.</li><li>Damaged microphone boom.</li><li>Broken battery clips.</li><li>Loose or damaged ear pads.</li></ul>Take photos if damage is found."] },
-  { id: "music", label: "Gresham - Music", icon: "🎵", checks: ["<strong>Confirm the Problem</strong><br>✅ Check:<ul><li>Is there no music at all?</li><li>Is the music cutting in and out?</li><li>Is the music too soft?</li><li>Is only one area of the store affected?</li></ul>This helps determine whether the issue is with the music player, amplifier, or speakers.", "<strong>Check the Amplifier</strong><br>✅ Verify:<ul><li>The amplifier is switched on.</li><li>Power lights are visible.</li><li>No fault or protection lights are displayed.</li><li>Volume controls have not been turned down.</li></ul>If the amplifier is off, switch it on and wait a few minutes.", "<strong>Check the Music Player (NUC)</strong><br>✅ In the upper network cabinet, verify that:<ul><li>The NUC has power.</li><li>Power indicator lights are on.</li><li>The device appears to be running.</li></ul>If there are no lights on the NUC, check the power supply and plug connections.", "<strong>Restart the Music Player</strong><br>✅ Restart the NUC by:<ul><li>Switching it off.</li><li>Waiting 30 seconds.</li><li>Switching it back on.</li></ul>Allow several minutes for the music service to start.", "<strong>Check the Internet Connection</strong><br>✅ Verify:<ul><li>Store internet is working.</li><li>Other devices can access the internet.</li><li>Network equipment is powered on.</li></ul>Many music services require an active internet connection.", "<strong>Check Audio Cables</strong><br>✅ Ensure:<ul><li>Audio cables between the NUC and amplifier are securely connected.</li><li>No cables are loose or disconnected.</li><li>No cables appear damaged.</li></ul>Do not unplug cables unless necessary.", "<strong>Check Speaker Zones</strong><br>✅ Verify:<ul><li>The affected area's speakers are switched on (if applicable).</li><li>Zone controls on the amplifier haven't been adjusted.</li><li>Other areas of the store also have no music.</li></ul>", "<strong>Check for Power Issues</strong><br>✅ Confirm:<ul><li>There has not been a recent power outage.</li><li>The UPS (if fitted) is operating correctly.</li><li>The amplifier and NUC restarted correctly after power was restored.</li></ul>", "<strong>Check the Network Cabinet</strong><br>✅ Verify:<ul><li>No equipment has been unplugged.</li><li>Network switches have power lights.</li><li>All cables appear connected and secure.</li></ul>"] },
-  { id: "cards", label: "Transaction Junction - Card Machines", icon: "💳", checks: ["<strong>Confirm the Problem</strong><br>✅ Check:<ul><li>Is only one till affected?</li><li>Are all tills affected?</li><li>Is the card machine displaying an error?</li><li>Is the transaction timing out?</li><li>Is the card machine completely offline?</li></ul>This helps determine whether the issue is isolated to one till or affects the entire payment system.", "<strong>Check the Card Machine Display</strong><br>✅ Verify:<ul><li>The card machine screen is on.</li><li>No error messages are displayed.</li><li>The card machine is showing its normal ready screen.</li></ul>If an error message is displayed, take a clear photo.", "<strong>Restart the Till</strong><br>✅ Restart the affected till:<ul><li>Close the POS system if possible.</li><li>Restart Windows.</li><li>Open the POS system and test a transaction.</li></ul>Many communication issues are resolved by restarting the till.", "<strong>Check the Card Machine Cables</strong><br>✅ Ensure:<ul><li>The power cable is connected securely.</li><li>The communication cable is connected properly.</li><li>No cables have been unplugged during cleaning or maintenance.</li></ul>Do not force connectors into ports.", "<strong>Check the Store Internet Connection</strong><br>✅ Verify:<ul><li>Internet is working on other devices.</li><li>Other tills can operate normally.</li><li>Network equipment is powered on.</li></ul>Card transactions require a stable internet connection.", "<strong>Check the GAAP Server</strong><br>✅ In the upper network cabinet, verify:<ul><li>The GAAP server is powered on.</li><li>Power lights are visible.</li><li>No warning lights are displayed.</li><li>Network cables are connected securely.</li></ul>Do not switch off the server unless instructed by IT.", "<strong>Determine if the Issue Affects All Tills</strong><br>✅ Check:<ul><li>Can other tills process card payments?</li><li>Is the issue isolated to one card machine?</li><li>Are all card machines experiencing the same problem?</li></ul>This information is critical for troubleshooting.", "<strong>Check for Recent Power Interruptions</strong><br>✅ Confirm:<ul><li>There has not been a recent power outage.</li><li>The server restarted correctly after any power interruption.</li><li>Network equipment is powered and operating normally.</li></ul>", "<strong>Record Any Error Messages</strong><br>✅ Take photos of:<ul><li>Error messages on the till.</li><li>Error messages on the card machine.</li><li>Any communication or timeout messages.</li></ul>"] },
-  { id: "cctv", label: "360 Degrees - CCTV", icon: "📹", checks: ["<strong>Confirm the Problem</strong><br>✅ Check:<ul><li>Are all cameras offline?</li><li>Is only one camera affected?</li><li>Is the CCTV monitor blank?</li><li>Can live cameras be seen but playback is unavailable?</li><li>Is remote viewing unavailable?</li></ul>This helps identify whether the issue affects a single camera or the entire CCTV system.", "<strong>Check the CCTV Monitor</strong><br>✅ Verify:<ul><li>The screen is displaying the CCTV system.</li><li>All cables are connected securely.</li></ul>", "<strong>Check the NVR / DVR Recorder</strong><br>✅ In the upper network cabinet, verify:<ul><li>The CCTV recorder is powered on.</li><li>Power lights are visible.</li><li>Network lights are flashing.</li><li>No error messages are displayed.</li></ul>Do not unplug or switch off the recorder unless instructed by IT.", "<strong>Check Camera Status</strong><br>✅ Determine:<ul><li>Is only one camera offline?</li><li>Are multiple cameras offline?</li><li>Are all cameras offline?</li></ul>Take note of the camera names or locations affected.<br>Example:<ul><li>Drive-Thru Camera</li><li>Front Counter Camera</li><li>Office Camera</li><li>Back Door Camera</li></ul>", "<strong>Check the Network Equipment</strong><br>✅ Verify:<ul><li>Network switches are powered on.</li><li>Network cables are securely connected.</li><li>No cables have been accidentally unplugged.</li></ul>This is especially important if remote viewing is unavailable.", "<strong>Check Recording Playback</strong><br>✅ Attempt to view recorded footage.<br>Determine:<ul><li>Can live cameras be seen?</li><li>Can recorded footage be played back?</li><li>Is recording missing for a specific period?</li></ul>Make a note of the date and time affected.", "<strong>Check for Error Messages</strong><br>✅ If any messages appear:<ul><li>Take a clear photo.</li><li>Record the exact wording.</li></ul>Examples:<ul><li>Hard Drive Error</li><li>Camera Offline</li><li>Network Disconnected</li><li>No Signal</li></ul>"] },
-  { id: "printer", label: "Radian - Office Printer", icon: "🖨️", checks: ["<strong>Confirm the Problem</strong><br>✅ Check:<ul><li>Is the printer completely offline?</li><li>Is it printing blank pages?</li><li>Is it showing an error message?</li><li>Are documents stuck in the print queue?</li><li>Can anyone print from another PC?</li></ul>This helps determine whether the issue is with the printer or a specific computer.", "<strong>Check That the Printer Has Power</strong><br>✅ Verify:<ul><li>The printer is switched on.</li><li>The display screen is on (if fitted).</li><li>Power lights are visible.</li><li>The power cable is connected securely.</li><li>The wall plug is switched on.</li></ul>If the printer has no lights or display, check the power source before logging a call.", "<strong>Check for Error Messages</strong><br>✅ Look for messages such as:<ul><li>Paper Jam</li><li>Out of Paper</li><li>Toner Low</li><li>Replace Toner</li><li>Offline</li><li>Cover Open</li></ul>Take a clear photo of any error message displayed.", "<strong>Check Paper Supply</strong><br>✅ Verify:<ul><li>Paper is loaded correctly.</li><li>The paper tray is fully inserted.</li><li>The paper guides are set correctly.</li><li>There is no damaged or folded paper in the tray.</li></ul>", "<strong>Check for Paper Jams</strong><br>✅ Inspect:<ul><li>Paper trays</li><li>Rear access doors</li><li>Output trays</li></ul>Remove any visible jammed paper carefully.<br>Do not force stuck paper out of the printer.", "<strong>Check Toner or Ink</strong><br>✅ Verify:<ul><li>Toner or ink cartridges are installed correctly.</li><li>There are no toner warnings displayed.</li><li>Cartridges are not empty.</li></ul>If a spare toner cartridge is available, replace it if required.", "<strong>Restart the Printer</strong><br>✅ Perform a restart:<ul><li>Switch the printer off.</li><li>Wait 30 seconds.</li><li>Switch it back on.</li><li>Allow it to fully initialize.</li></ul>Then try printing again.", "<strong>Check Network Connection</strong><br>✅ If it is a network printer:<ul><li>Ensure the network cable is connected.</li><li>Check that network lights are visible on the printer.</li><li>Confirm the store network is working.</li></ul>If other PCs can print successfully, note this when logging the call.", "<strong>Clear Stuck Print Jobs</strong><br>✅ If documents are stuck:<ul><li>Open the print queue.</li><li>Cancel all pending print jobs.</li><li>Send a new test print.</li></ul>Sometimes an old stuck job prevents new documents from printing.", "<strong>Perform a Test Print</strong><br>✅ Print:<ul><li>A Windows test page, or</li><li>The printer's built-in configuration page.</li></ul>Determine whether:<ul><li>The printer prints successfully.</li><li>The printer receives the job but does not print.</li><li>Nothing happens at all.</li></ul>"] },
-  { id: "telephone", label: "Switchtel - Telephone", icon: "📞", checks: ["<strong>Confirm the Problem</strong><br>✅ Check:<ul><li>Can you make outgoing calls?</li><li>Can you receive incoming calls?</li><li>Is there no dial tone?</li><li>Is there no sound during calls?</li><li>Is the phone displaying an error message?</li></ul>", "<strong>Check That the Phone Has Power</strong><br>✅ Verify:<ul><li>The phone screen is on.</li><li>The Yealink home screen is displayed.</li><li>The network cable is connected securely.</li></ul>If the screen is blank:<ul><li>Check that the cable is plugged in properly.</li><li>Check that the network equipment in the cabinet has power.</li></ul>", "<strong>Restart the Phone</strong><br>✅ Perform a restart:<ul><li>Unplug the network cable from the back of the phone.</li><li>Wait 30 seconds.</li><li>Plug the cable back in.</li><li>Allow the phone to fully start up.</li></ul>", "<strong>Check for Error Messages</strong><br>✅ Look for messages such as:<ul><li>No Service</li><li>Network Unavailable</li><li>Register Failed</li><li>Account Registration Failed</li></ul>Take a clear photo of any error message displayed.", "<strong>Check the Store Internet Connection</strong><br>✅ Verify:<ul><li>Internet is working on a PC.</li><li>Websites can be accessed.</li><li>Card machines are working.</li><li>Other network services are functioning.</li></ul>The phone cannot operate without a working network connection.", "<strong>Test Calling</strong><br>✅ Try:<ul><li>Calling a mobile phone.</li><li>Calling the store number from a mobile phone.</li></ul>Determine whether:<ul><li>Incoming calls fail.</li><li>Outgoing calls fail.</li><li>Both incoming and outgoing calls fail.</li></ul>"] },
-  { id: "office", label: "TRG - Emails", icon: "📧", checks: ["<strong>Confirm the Problem</strong><br>✅ Check:<ul><li>Can you send emails?</li><li>Can you receive emails?</li><li>Are emails delayed?</li><li>Is Outlook not opening?</li><li>Are you receiving an error message?</li></ul>Make a note of exactly what is happening.", "<strong>Check the Internet Connection</strong><br>✅ Verify:<ul><li>Internet is working on the PC.</li><li>Websites such as Google or Microsoft open successfully.</li><li>Other network services are working.</li></ul>Email will not work without an internet connection.", "<strong>Restart Outlook</strong><br>✅ Close Outlook completely.<ul><li>Wait 30 seconds.</li><li>Reopen Outlook.</li><li>Test sending and receiving emails.</li></ul>", "<strong>Restart the PC</strong><br>✅ Restart the computer and test Outlook again.<br>Many email issues are resolved by a simple restart.", "<strong>Check for Error Messages</strong><br>✅ If an error message appears:<ul><li>Take a screenshot or photo.</li><li>Record the exact wording.</li></ul>Examples:<ul><li>Disconnected</li><li>Need Password</li><li>Cannot Connect to Server</li><li>Outlook Not Responding</li></ul>", "<strong>Check Outlook Connection Status</strong><br>✅ Look at the bottom right corner of Outlook.<br>It should show:<ul><li>Connected to Microsoft Exchange</li><li>Connected</li></ul>If it shows:<ul><li>Disconnected</li><li>Trying to Connect</li><li>Need Password</li></ul>Take a screenshot or photo.", "<strong>Check the Outbox</strong><br>✅ Open the Outbox folder.<br>If emails are stuck:<ul><li>Note how many emails are waiting.</li><li>Check if there are large attachments.</li><li>Try sending a simple test email.</li></ul>", "<strong>Test Sending and Receiving</strong><br>✅ Send a test email to:<ul><li>Your manager, or</li><li>Another known email address.</li></ul>Check whether:<ul><li>The email sends successfully.</li><li>A reply can be received.</li></ul>", "<strong>Check Available Mailbox Space</strong><br>✅ If Outlook reports the mailbox is full:<ul><li>Delete unwanted emails.</li><li>Empty the Deleted Items folder.</li><li>Take a screenshot of any storage warning.</li></ul>", "<strong>Try Outlook on the Web</strong><br>✅ Open a browser and go to: https://outlook.office.com<br>Sign in and check whether email works there.<br>This helps determine whether the problem is with Outlook or the mailbox itself."] },
-  { id: "tablets", label: "TRG - Tablets", icon: "📱", checks: ["<strong>Confirm the Problem</strong><br>✅ Check:<ul><li>Will the tablet not switch on?</li><li>Is the tablet frozen?</li><li>Is the training app not opening?</li><li>Is there no internet connection?</li><li>Is the screen damaged?</li><li>Are users unable to log in?</li></ul>Make a note of the exact issue.", "<strong>Check the Battery</strong><br>✅ Verify:<ul><li>The tablet has sufficient battery charge.</li><li>The charging cable is connected correctly.</li><li>The charger is plugged in and switched on.</li></ul>If the battery is low, charge the tablet for at least 15 minutes before testing again.", "<strong>Restart the Tablet</strong><br>✅ Perform a restart:<ul><li>Hold the power button down.</li><li>Select Restart if available.</li><li>If frozen, hold the power button for 10 seconds until the tablet switches off.</li><li>Switch it back on.</li></ul>Many tablet issues are resolved with a restart.", "<strong>Check the Internet Connection</strong><br>✅ Verify:<ul><li>The tablet is connected to the store Wi-Fi.</li><li>Other devices can access the internet.</li><li>The store internet is working.</li></ul>Open a website to confirm internet access.", "<strong>Check the Wi-Fi Connection</strong><br>✅ Ensure:<ul><li>Wi-Fi is turned on.</li><li>The tablet is connected to the correct store Wi-Fi network.</li><li>Airplane Mode is turned off.</li></ul>If necessary, disconnect from Wi-Fi and reconnect.", "<strong>Check the E-Learning Application</strong><br>✅ Verify:<ul><li>The training application opens correctly.</li><li>The application is not displaying an error message.</li><li>Training content loads successfully.</li></ul>If an error is displayed, take a screenshot or photo.", "<strong>Check Login Details</strong><br>✅ Confirm:<ul><li>The user is entering the correct username and password.</li><li>The correct training account is being used.</li></ul>If login fails, record the error message.", "<strong>Check for Physical Damage</strong><br>✅ Inspect the tablet for:<ul><li>Cracked screen</li><li>Damaged charging port</li><li>Swollen battery</li><li>Water damage</li><li>Missing buttons</li></ul>Take photos of any damage found.", "<strong>Test Charging</strong><br>✅ Verify:<ul><li>The charging indicator appears when plugged in.</li><li>The tablet battery percentage increases while charging.</li><li>If possible, test with another charger.</li></ul>"] },
-  { id: "locks", label: "360 Degrees - Toilet Door Locks", icon: "🔐", checks: ["<strong>Confirm the Problem</strong><br>✅ Check:<ul><li>Is the door completely locked?</li><li>Is the door staying unlocked?</li><li>Is the PIN code not working?</li><li>Is the keypad not responding?</li><li>Is the issue affecting one door or multiple doors?</li></ul>Make a note of exactly what is happening.", "<strong>Check the Keypad</strong><br>✅ Verify:<ul><li>The keypad is illuminated (if applicable).</li><li>Buttons respond when pressed.</li><li>There is no visible damage to the keypad.</li></ul>If the keypad is completely unresponsive, note this when logging the call.", "<strong>Try the PIN Code Again</strong><br>✅ Confirm:<ul><li>The correct PIN code is being entered.</li><li>The code is entered slowly and correctly.</li><li>Multiple users have tested the code.</li></ul>A typing mistake can sometimes be mistaken for a lock fault.", "<strong>Check for Low Battery Warnings</strong><br>✅ Look for:<ul><li>Flashing lights.</li><li>Audible warning beeps.</li><li>Low battery indicators.</li></ul>Many lock failures are caused by low batteries.", "<strong>Check for Physical Obstructions</strong><br>✅ Ensure:<ul><li>Nothing is blocking the door.</li><li>The latch aligns correctly with the door frame.</li><li>The door closes fully without forcing.</li></ul>A misaligned door can prevent the lock from operating correctly.", "<strong>Test Lock Operation</strong><br>✅ Check whether:<ul><li>The lock makes a clicking sound when the code is entered.</li><li>The door unlocks briefly.</li><li>The handle operates correctly.</li></ul>Note exactly what happens after entering the PIN.", "<strong>Inspect for Damage</strong><br>✅ Check for:<ul><li>Loose keypad</li><li>Damaged buttons</li><li>Broken handle</li><li>Signs of vandalism</li><li>Loose wiring (if visible)</li></ul>Take photos of any damage.", "<strong>Check for Recent Power Interruptions</strong><br>✅ Confirm:<ul><li>There has not been a recent power outage.</li><li>The lock has been operating normally since power was restored.</li></ul>Some electronic locks may require a reset after a power interruption.", "<strong>If Emergency Access is Available</strong><br>✅ Check whether:<ul><li>The manager override code works.</li><li>The emergency key (if available) works.</li></ul>Only use approved store procedures for emergency access."] }
+  { 
+    id: "tills", 
+    label: "GAAP - Tills / SCREENS / MOD PC", 
+    icon: "💻", 
+    subCategories: [
+      {
+        id: "mod_pc",
+        label: "MOD PC",
+        checks: [
+          "<strong>Is the PC Switched On?</strong><br>✅ Check that:<ul><li>The power cable is plugged in securely.</li><li>The wall plug is switched on.</li><li>Any UPS or surge protector is switched on.</li><li>The PC power button has been pressed.</li><li>If there are no lights or sounds at all, check another wall socket if possible.</li></ul>",
+          "<strong>Restart the PC</strong><br>Many issues are resolved by a restart.<br>✅ Click Restart from Windows if possible.<br>If the PC is frozen:<ul><li>Hold the power button for 10 seconds until it switches off.</li><li>Wait 30 seconds.</li><li>Switch it back on.</li></ul>",
+          "<strong>Check All Cables</strong><br>✅ Ensure:<ul><li>Power cables are connected.</li><li>Network cable is plugged in.</li><li>Keyboard and mouse are connected.</li><li>Look for any loose or disconnected cables.</li></ul>"
+        ]
+      },
+      {
+        id: "tills_hardware",
+        label: "Tills",
+        checks: [
+          "<strong>Is the Monitor On?</strong><br>✅ Check that:<ul><li>The monitor power light is on.</li><li>The monitor is not showing 'No Signal.'</li><li>Cables between the PC and monitor are connected firmly.</li><li>Try turning the monitor off and on again.</li></ul>",
+          "<strong>If the POS is Not Working</strong><br>✅ Check:<ul><li>POS application is open.</li><li>Receipt printer is powered on.</li><li>Scanner cables are connected.</li><li>Cash drawer and printer cables are secure.</li><li>Restart the POS PC if necessary.</li></ul>"
+        ]
+      },
+      {
+        id: "packscreens",
+        label: "Packscreens & Devices",
+        checks: [
+          "<strong>Remove External Devices</strong><br>Disconnect any:<ul><li>USB drives</li><li>External hard drives</li><li>Unused USB devices</li></ul>Then restart the PC.",
+          "<strong>Is There an Error Message?</strong><br>If an error message appears:<br>✅ Take a photo of the screen or write down the exact message.<br>This helps IT resolve the issue faster.",
+          "<strong>Can You Access the Internet?</strong><br>If the problem is internet-related:<br>✅ Check:<ul><li>Network cable is plugged in.</li><li>Other PCs in the store can access the internet.</li><li>Restart the PC.</li></ul>"
+        ]
+      }
+    ]
+  },
+  { 
+    id: "internet", 
+    label: "Exmile - Internet", 
+    icon: "🌐", 
+    subCategories: [
+      {
+        id: "router",
+        label: "Router / Fibre",
+        checks: [
+          "<strong>Determine the Scope of the Problem</strong><br>✅ Check:<ul><li>Is only one PC affected?</li><li>Are all PCs affected?</li><li>Are card machines affected?</li><li>Is the store Wi-Fi working?</li></ul>",
+          "<strong>Check Network Cables</strong><br>✅ Ensure:<ul><li>The network cable is securely plugged into the PC.</li><li>The cable is securely plugged into the wall outlet, switch, or router.</li><li>No cables appear damaged, pinched, or disconnected.</li><li>Look for link lights (usually green or orange) where the cable plugs in.</li></ul>",
+          "<strong>Check for Power Outages or Load Shedding</strong><br>✅ Confirm:<ul><li>There has not been a recent power outage.</li><li>All internet equipment has powered up correctly after power restoration.</li><li>UPS units are switched on and functioning.</li></ul>"
+        ]
+      },
+      {
+        id: "devices_wifi",
+        label: "Wi-Fi & Devices",
+        checks: [
+          "<strong>Test Another Device</strong><br>✅ Check whether:<ul><li>Another PC can access the internet.</li><li>A cellphone connected to the store Wi-Fi can browse the internet.</li></ul>",
+          "<strong>Check Wi-Fi Issues</strong><br>If Wi-Fi is not working:<br>✅ Verify:<ul><li>Wi-Fi is enabled on the device.</li><li>The device is connected to the correct Wi-Fi network.</li><li>Airplane mode is turned off.</li><li>Try disconnecting and reconnecting to the Wi-Fi network.</li></ul>",
+          "<strong>Test a Website</strong><br>✅ Open a web browser and try:<ul><li>www.google.com</li><li>www.microsoft.com</li></ul>",
+          "<strong>Restart the Affected Device</strong><br>✅ Restart the affected PC, tablet, or device and test again."
+        ]
+      }
+    ]
+  },
+  { 
+    id: "kiosks", 
+    label: "ODM - Kiosks / Menu Screens", 
+    icon: "📺", 
+    subCategories: [
+      {
+        id: "kiosk_hardware",
+        label: "Hardware & Power",
+        checks: [
+          "<strong>Is the Kiosk Powered On?</strong><br>✅ Check that:<ul><li>The kiosk screen is on.</li><li>There are power lights visible.</li><li>The power cable is connected securely.</li><li>The wall plug is switched on.</li></ul>",
+          "<strong>Restart the Kiosk</strong><br>✅ If possible:<ul><li>Close the kiosk application.</li><li>Restart the kiosk.</li></ul>If frozen: Hold power for 10 seconds, wait 30 seconds, switch back on.",
+          "<strong>Is the Touch Screen Responding?</strong><br>✅ Test:<ul><li>Touch several areas of the screen.</li><li>Check whether any buttons respond.</li></ul>",
+          "<strong>Check All Cables</strong><br>✅ Ensure:<ul><li>Power cables are connected.</li><li>Network cables are connected.</li><li>No cables have been unplugged.</li></ul>"
+        ]
+      },
+      {
+        id: "kiosk_software",
+        label: "Software & Network",
+        checks: [
+          "<strong>Check the Internet Connection</strong><br>✅ Verify:<ul><li>Other kiosks are working.</li><li>POS terminals have internet access.</li><li>Store Wi-Fi or internet is functioning normally.</li></ul>",
+          "<strong>Check for Error Messages</strong><br>✅ If an error message appears: Take a photo and record the exact wording.",
+          "<strong>Is the Kiosk Application Open?</strong><br>✅ Check whether: The kiosk application is running and displaying the ordering screen.",
+          "<strong>Check the Payment Device</strong><br>✅ Check that: The card terminal is powered on, cables connected, and displays home screen.",
+          "<strong>Determine the Scope of the Issue</strong><br>✅ Check: Is only one kiosk affected or are all affected?"
+        ]
+      }
+    ]
+  },
+  { 
+    id: "cash", 
+    label: "Deposita - ABM", 
+    icon: "💵", 
+    subCategories: [
+      {
+        id: "deposita_power",
+        label: "Power & Status",
+        checks: [
+          "<strong>Is the Deposita Unit Powered On?</strong><br>✅ Check that: The screen is on, power lights visible, cable plugged in securely, wall plug and UPS switched on.",
+          "<strong>Restart the Deposita Unit</strong><br>✅ If frozen: Follow approved restart procedure, wait 30 seconds before switching on.",
+          "<strong>Check the Internet Connection</strong><br>✅ Verify: Store internet is working, router/switch is powered on."
+        ]
+      },
+      {
+        id: "deposita_errors",
+        label: "Errors & Jams",
+        checks: [
+          "<strong>Check for Error Messages</strong><br>✅ If error is displayed: Take a clear photo. Do not clear messages before taking a photo.",
+          "<strong>Check for Notes or Coin Jams</strong><br>✅ Check whether notes are stuck or a jam warning is displayed. Do not force notes.",
+          "<strong>Check if Deposits Can Be Processed</strong><br>✅ Test: Can a note be inserted? Does it accept/reject all notes?",
+          "<strong>Determine the Scope of the Issue</strong><br>✅ Check: Is it completely offline or just not transmitting?"
+        ]
+      }
+    ]
+  },
+  { 
+    id: "g4s", 
+    label: "G4S - CIT", 
+    icon: "💵", 
+    subCategories: [
+      {
+        id: "cit_scheduling",
+        label: "Collections & Deliveries",
+        checks: [
+          "<strong>1. Confirm the Issue</strong><br>✅ Identify problem: Change order not delivered, cash collection missed, late arrival, etc.",
+          "<strong>2. Check Collection or Delivery Schedule</strong><br>✅ Verify it was scheduled for today and expected time has passed.",
+          "<strong>4. Verify Change Orders</strong><br>✅ Confirm order was submitted correctly with reference number.",
+          "<strong>5. Verify Cash Collections</strong><br>✅ Confirm cash bags were ready and documentation completed."
+        ]
+      },
+      {
+        id: "cit_security",
+        label: "Security & Reporting",
+        checks: [
+          "<strong>3. Check the Deposita Unit</strong><br>✅ Confirm machine operational, deposit accepted, door closed/locked.",
+          "<strong>6. Check for Security Concerns</strong><br>✅ Report if Deposita door left open, cash not secured, or seals broken.",
+          "<strong>7. Record Relevant Details</strong><br>✅ Record: Date, time, vehicle details, driver name, reference numbers.",
+          "<strong>8. Take Photos</strong><br>✅ Photograph open doors, errors, incorrect deliveries, damaged bags."
+        ]
+      }
+    ]
+  },
+  { 
+    id: "headsets_gaap", 
+    label: "Gaap - DT, Headsets / HME Timer", 
+    icon: "🎧", 
+    subCategories: [
+      {
+        id: "gaap_headset",
+        label: "Headset Hardware",
+        checks: [
+          "<strong>Confirm the Problem</strong><br>✅ Check: Only one headset affected or all? Can customers be heard/hear you?",
+          "<strong>Check the Headset Battery</strong><br>✅ Verify battery fitted correctly, charged, contacts clean. Replace with spare if available.",
+          "<strong>Switch the Headset Off and On</strong><br>✅ Reboot: Turn off, wait 10s, turn back on.",
+          "<strong>Check the Volume Settings</strong><br>✅ Verify headset volume is up and mic is not muted.",
+          "<strong>Check the Microphone Position</strong><br>✅ Ensure mic boom is positioned correctly and not obstructed.",
+          "<strong>Test with Another Headset</strong><br>✅ Connect different headset to test.",
+          "<strong>Inspect for Physical Damage</strong><br>✅ Check for cracked housing, damaged boom, broken clips."
+        ]
+      },
+      {
+        id: "gaap_base",
+        label: "Base Station",
+        checks: [
+          "<strong>Check the Base Station</strong><br>✅ Verify base station is powered on, lights normal, cables secure.",
+          "<strong>Check the Drive-Thru System</strong><br>✅ Determine if lane detection is working and order point operating normally."
+        ]
+      }
+    ]
+  },
+  { 
+    id: "headsets_micros", 
+    label: "Micros - DT, Headsets / Timer", 
+    icon: "🎧", 
+    subCategories: [
+      {
+        id: "micros_headset",
+        label: "Headset Hardware",
+        checks: [
+          "<strong>Confirm the Problem</strong><br>✅ Check: Only one headset affected or all? Can customers be heard/hear you?",
+          "<strong>Check the Headset Battery</strong><br>✅ Verify battery fitted correctly, charged, contacts clean.",
+          "<strong>Switch the Headset Off and On</strong><br>✅ Reboot: Turn off, wait 10s, turn back on.",
+          "<strong>Check the Volume Settings</strong><br>✅ Verify headset volume is up and mic is not muted.",
+          "<strong>Check the Microphone Position</strong><br>✅ Ensure mic boom is positioned correctly.",
+          "<strong>Test with Another Headset</strong><br>✅ Connect different headset to test.",
+          "<strong>Inspect for Physical Damage</strong><br>✅ Check for cracked housing, damaged boom, broken clips."
+        ]
+      },
+      {
+        id: "micros_base",
+        label: "Base Station",
+        checks: [
+          "<strong>Check the Base Station</strong><br>✅ Verify base station is powered on, lights normal, cables secure.",
+          "<strong>Check the Drive-Thru System</strong><br>✅ Determine if lane detection is working and order point operating normally."
+        ]
+      }
+    ]
+  },
+  { 
+    id: "music", 
+    label: "Gresham - Music", 
+    icon: "🎵", 
+    subCategories: [
+      {
+        id: "music_amp",
+        label: "Amplifier & Speakers",
+        checks: [
+          "<strong>Confirm the Problem</strong><br>✅ Check: No music at all, cutting in/out, too soft, or only one area affected?",
+          "<strong>Check the Amplifier</strong><br>✅ Verify amp is switched on, lights visible, volume not turned down.",
+          "<strong>Check Speaker Zones</strong><br>✅ Verify affected area's speakers are switched on and zone controls not adjusted.",
+          "<strong>Check for Power Issues</strong><br>✅ Confirm no recent power outages or UPS issues."
+        ]
+      },
+      {
+        id: "music_player",
+        label: "Music Player (NUC)",
+        checks: [
+          "<strong>Check the Music Player (NUC)</strong><br>✅ Verify NUC in network cabinet has power and lights on.",
+          "<strong>Restart the Music Player</strong><br>✅ Restart NUC: Switch off, wait 30s, switch back on.",
+          "<strong>Check the Internet Connection</strong><br>✅ Verify store internet is working.",
+          "<strong>Check Audio Cables</strong><br>✅ Ensure cables between NUC and amplifier are securely connected.",
+          "<strong>Check the Network Cabinet</strong><br>✅ Verify no equipment unplugged, switches have lights."
+        ]
+      }
+    ]
+  },
+  { 
+    id: "cards", 
+    label: "Transaction Junction - Card Machines", 
+    icon: "💳", 
+    subCategories: [
+      {
+        id: "cards_device",
+        label: "Card Machine Hardware",
+        checks: [
+          "<strong>Confirm the Problem</strong><br>✅ Check: One till or all affected? Error displayed? Timeout? Completely offline?",
+          "<strong>Check the Card Machine Display</strong><br>✅ Verify screen is on, no errors, showing ready screen. Take photo of errors.",
+          "<strong>Restart the Till</strong><br>✅ Close POS, restart Windows, open POS and test.",
+          "<strong>Check the Card Machine Cables</strong><br>✅ Ensure power and communication cables connected properly."
+        ]
+      },
+      {
+        id: "cards_network",
+        label: "Network & Server",
+        checks: [
+          "<strong>Check the Store Internet Connection</strong><br>✅ Verify internet working on other devices.",
+          "<strong>Check the GAAP Server</strong><br>✅ Verify GAAP server powered on, lights visible, cables secure. Do not switch off.",
+          "<strong>Determine if the Issue Affects All Tills</strong><br>✅ Check if other tills process cards.",
+          "<strong>Check for Recent Power Interruptions</strong><br>✅ Confirm server restarted correctly after power outage.",
+          "<strong>Record Any Error Messages</strong><br>✅ Take photos of errors on till or card machine."
+        ]
+      }
+    ]
+  },
+  { 
+    id: "cctv", 
+    label: "360 Degrees - CCTV", 
+    icon: "📹", 
+    subCategories: [
+      {
+        id: "cctv_cameras",
+        label: "Cameras & Monitor",
+        checks: [
+          "<strong>Confirm the Problem</strong><br>✅ Check: All offline, one offline, monitor blank, or playback unavailable?",
+          "<strong>Check the CCTV Monitor</strong><br>✅ Verify screen displays CCTV and cables connected.",
+          "<strong>Check Camera Status</strong><br>✅ Determine which cameras are offline (e.g. Drive-Thru, Office, Back Door)."
+        ]
+      },
+      {
+        id: "cctv_nvr",
+        label: "NVR & Network",
+        checks: [
+          "<strong>Check the NVR / DVR Recorder</strong><br>✅ Verify CCTV recorder in cabinet is powered on, lights flashing. Do not unplug.",
+          "<strong>Check the Network Equipment</strong><br>✅ Verify network switches powered on and cables secure.",
+          "<strong>Check Recording Playback</strong><br>✅ Attempt playback. Note date and time missing.",
+          "<strong>Check for Error Messages</strong><br>✅ Take photo of messages (e.g. Hard Drive Error, No Signal)."
+        ]
+      }
+    ]
+  },
+  { 
+    id: "printer", 
+    label: "Radian - Office Printer", 
+    icon: "🖨️", 
+    subCategories: [
+      {
+        id: "printer_hardware",
+        label: "Hardware & Power",
+        checks: [
+          "<strong>Confirm the Problem</strong><br>✅ Check: Completely offline, blank pages, error message, or stuck queue?",
+          "<strong>Check That the Printer Has Power</strong><br>✅ Verify printer switched on, lights visible, cables secure.",
+          "<strong>Check for Error Messages</strong><br>✅ Look for messages like Paper Jam, Out of Paper, Toner Low. Take photo.",
+          "<strong>Restart the Printer</strong><br>✅ Switch off, wait 30s, switch on."
+        ]
+      },
+      {
+        id: "printer_supplies",
+        label: "Paper, Toner & Network",
+        checks: [
+          "<strong>Check Paper Supply</strong><br>✅ Verify paper loaded correctly and guides set.",
+          "<strong>Check for Paper Jams</strong><br>✅ Inspect trays and doors. Remove visible jams carefully.",
+          "<strong>Check Toner or Ink</strong><br>✅ Verify cartridges installed and not empty. Replace if needed.",
+          "<strong>Check Network Connection</strong><br>✅ Ensure network cable connected and lights visible.",
+          "<strong>Clear Stuck Print Jobs</strong><br>✅ Cancel pending jobs in Windows queue.",
+          "<strong>Perform a Test Print</strong><br>✅ Print Windows test page."
+        ]
+      }
+    ]
+  },
+  { 
+    id: "telephone", 
+    label: "Switchtel - Telephone", 
+    icon: "📞", 
+    subCategories: [
+      {
+        id: "tel_hardware",
+        label: "Hardware & Power",
+        checks: [
+          "<strong>Confirm the Problem</strong><br>✅ Check: Can't make/receive calls, no dial tone, no sound, or error message?",
+          "<strong>Check That the Phone Has Power</strong><br>✅ Verify phone screen on, Yealink screen displayed.",
+          "<strong>Restart the Phone</strong><br>✅ Unplug network cable, wait 30s, plug back in."
+        ]
+      },
+      {
+        id: "tel_network",
+        label: "Network & Testing",
+        checks: [
+          "<strong>Check for Error Messages</strong><br>✅ Look for No Service, Register Failed. Take photo.",
+          "<strong>Check the Store Internet Connection</strong><br>✅ Verify internet working on PC.",
+          "<strong>Test Calling</strong><br>✅ Try calling mobile and calling from mobile."
+        ]
+      }
+    ]
+  },
+  { 
+    id: "office", 
+    label: "TRG - Emails", 
+    icon: "📧", 
+    subCategories: [
+      {
+        id: "email_outlook",
+        label: "Outlook & PC",
+        checks: [
+          "<strong>Confirm the Problem</strong><br>✅ Check: Can't send/receive, delayed, Outlook not opening, or error message?",
+          "<strong>Restart Outlook</strong><br>✅ Close completely, wait 30s, reopen.",
+          "<strong>Restart the PC</strong><br>✅ Restart computer and test.",
+          "<strong>Check for Error Messages</strong><br>✅ Take screenshot of errors like Disconnected, Need Password.",
+          "<strong>Check Outlook Connection Status</strong><br>✅ Check bottom right for 'Connected'. Take screenshot if not."
+        ]
+      },
+      {
+        id: "email_network",
+        label: "Network & Mailbox",
+        checks: [
+          "<strong>Check the Internet Connection</strong><br>✅ Verify internet working on PC.",
+          "<strong>Check the Outbox</strong><br>✅ If emails stuck: note amount, check large attachments.",
+          "<strong>Test Sending and Receiving</strong><br>✅ Send test email to known address.",
+          "<strong>Check Available Mailbox Space</strong><br>✅ If full, delete unwanted emails.",
+          "<strong>Try Outlook on the Web</strong><br>✅ Go to outlook.office.com to test if email works there."
+        ]
+      }
+    ]
+  },
+  { 
+    id: "tablets", 
+    label: "TRG - Tablets", 
+    icon: "📱", 
+    subCategories: [
+      {
+        id: "tablet_hardware",
+        label: "Hardware & Power",
+        checks: [
+          "<strong>Confirm the Problem</strong><br>✅ Check: Won't switch on, frozen, app not opening, screen damaged?",
+          "<strong>Check the Battery</strong><br>✅ Verify charge, cable connected, charger plugged in.",
+          "<strong>Test Charging</strong><br>✅ Verify charging indicator appears. Test another charger if possible.",
+          "<strong>Restart the Tablet</strong><br>✅ Hold power down, restart. If frozen, hold 10s.",
+          "<strong>Check for Physical Damage</strong><br>✅ Inspect for cracked screen, damaged port, swollen battery. Take photos."
+        ]
+      },
+      {
+        id: "tablet_software",
+        label: "Software & Network",
+        checks: [
+          "<strong>Check the Internet Connection</strong><br>✅ Verify connected to store Wi-Fi and internet working.",
+          "<strong>Check the Wi-Fi Connection</strong><br>✅ Ensure Wi-Fi on, Airplane mode off.",
+          "<strong>Check the E-Learning Application</strong><br>✅ Verify app opens correctly without errors.",
+          "<strong>Check Login Details</strong><br>✅ Confirm correct username/password used."
+        ]
+      }
+    ]
+  },
+  { 
+    id: "locks", 
+    label: "360 Degrees - Toilet Door Locks", 
+    icon: "🔐", 
+    subCategories: [
+      {
+        id: "locks_hardware",
+        label: "Keypad & Hardware",
+        checks: [
+          "<strong>Confirm the Problem</strong><br>✅ Check: Completely locked, staying unlocked, PIN not working, keypad unresponsive?",
+          "<strong>Check the Keypad</strong><br>✅ Verify illuminated, buttons respond, no damage.",
+          "<strong>Check for Low Battery Warnings</strong><br>✅ Look for flashing lights, beeps.",
+          "<strong>Inspect for Damage</strong><br>✅ Check for loose keypad, broken handle, vandalism. Take photos."
+        ]
+      },
+      {
+        id: "locks_operation",
+        label: "Operation & Door",
+        checks: [
+          "<strong>Try the PIN Code Again</strong><br>✅ Confirm correct PIN entered slowly.",
+          "<strong>Check for Physical Obstructions</strong><br>✅ Ensure nothing blocks door, latch aligns correctly.",
+          "<strong>Test Lock Operation</strong><br>✅ Check for clicking sound, door unlocks briefly.",
+          "<strong>Check for Recent Power Interruptions</strong><br>✅ Confirm lock operating normally since power restored.",
+          "<strong>If Emergency Access is Available</strong><br>✅ Check if manager override or emergency key works."
+        ]
+      }
+    ]
+  }
 ];
 
 const DEFAULT_CONTACTS = {
