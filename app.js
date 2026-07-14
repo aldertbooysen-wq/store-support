@@ -4,13 +4,13 @@ function render() {
   const app = document.getElementById("app");
   const crumbs = document.getElementById("crumbs");
 
-  const reportHtml = `
-    <div class="contact-card" style="margin-top: 25px; border-left-color: var(--red);">
-      <div class="contact-name">Report incorrect info</div>
-      <div class="contact-role">Aldert</div>
-      <div class="btn-group">
-        <a class="call-btn" style="background:var(--red); color:#fff;" href="tel:0835644582">📞 Call 0835644582</a>
-        <a class="email-btn" href="mailto:aldert@tradeonsa.co.za">✉️ Email Support</a>
+const reportHtml = `
+    <div class="contact-card" style="margin-top: 15px; border-left-color: var(--red); padding: 10px 12px;">
+      <div class="contact-name" style="font-size: 14px; margin-bottom: 2px;">Report incorrect info</div>
+      <div class="contact-role" style="font-size: 11px; margin-bottom: 8px;">Aldert</div>
+      <div class="btn-group" style="gap: 5px;">
+        <a class="call-btn" style="background:var(--red); color:#fff; padding: 8px; font-size: 13px;" href="tel:0835644582">📞 Call 0835644582</a>
+        <a class="email-btn" style="padding: 8px; font-size: 13px;" href="mailto:aldert@tradeonsa.co.za">✉️ Email Support</a>
       </div>
     </div>
   `;
